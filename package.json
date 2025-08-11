@@ -17,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/emzrivera/Dormease/issues"
   },
-  "homepage": "https://github.com/emzrivera/Dormease#readme"
+  "homepage": "https://github.com/emzrivera/Dormease#readme",
+  "devDependencies": {
+    "@types/webpack": "^5.28.5",
+    "typescript": "^5.9.2"
+  }
 }

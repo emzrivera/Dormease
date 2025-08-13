@@ -18,7 +18,7 @@ const ResponsiveNavigation: React.FC = () => {
       <ResponsiveContainer padding="lg">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex-shrink-0">
+          <a href='/home' className="flex-shrink-0">
             <ResponsiveImage
               src="/dormease-logo-1.svg"
               alt="Dormease Logo"
@@ -26,7 +26,7 @@ const ResponsiveNavigation: React.FC = () => {
               height={40}
               className="h-5 w-auto"
             />
-          </div>
+          </a>
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">

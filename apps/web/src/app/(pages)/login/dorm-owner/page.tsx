@@ -1,0 +1,137 @@
+import ResponsiveContainer from '../../../../components/ResponsiveContainer';
+import ResponsiveNavigation from '../../../../components/ResponsiveNavBar';
+
+export default function Login() {
+  return (
+    <div className='min-h-screen bg-white'>
+        <ResponsiveNavigation />
+
+        <main>
+          <section className="min-h-screen flex justify-center pt-5 sm:pt-10">
+            <ResponsiveContainer maxWidth="sm">
+              <div className="border border-t-8 rounded-lg border-dark w-full max-w-xs sm:max-w-md mx-auto py-10 px-10 relative overflow-hidden">
+                {/* Background Images */}
+                <div className="absolute bottom-0 left-5">
+                  <img 
+                    src="/dormer-login-bg-1.svg" 
+                    alt="Background decoration" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="absolute bottom-0 right-5">
+                  <img 
+                    src="/dormer-login-bg-2.svg" 
+                    alt="Background decoration" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+                {/* Content */}
+                <div className="relative z-10">
+                  <h1 className="text-5xl font-montserrat font-semibold text-center mb-4 text-dark">
+                    Login
+                  </h1>
+                  <p className="text-base text-center font-figtree text-dark mb-0">
+                    Welcome back, Dormer!
+                  </p>
+                  <p className="text-base text-center font-figtree text-dark">
+                    Glad to see you again.
+                  </p>
+
+                  {/* Login Form */}
+                  <form className="mt-8 space-y-4">
+                    {/* Email Field */}
+                    <div>
+                      <label htmlFor="email" className="block text-xs font-figtree text-labelGray">
+                        Email
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        className="w-full px-2 py-1 border border-fieldBorder rounded-md focus:ring-1 focus:ring-light focus:border-light transition-colors"
+                      />
+                    </div>
+
+                    {/* Password Field */}
+                    <div>
+                      <label htmlFor="password" className="block text-xs font-figtree text-labelGray">
+                        Password
+                      </label>
+                      <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        required
+                        className="w-full px-2 py-1 border border-fieldBorder rounded-md focus:ring-1 focus:ring-light focus:border-light transition-colors"
+                      />
+                    </div>
+
+                    {/* Remember Me & Forgot Password */}
+                    <div className="flex items-center justify-between py-2">
+                      <div className="flex items-center">
+                        <input
+                          id="remember-me"
+                          name="remember-me"
+                          type="checkbox"
+                          className="h-4 w-4 text-dark focus:ring-dark border-fieldBorder rounded-none"
+                        />
+                        <label htmlFor="remember-me" className="ml-2 block text-xs font-figtree text-labelGray">
+                          Remember me
+                        </label>
+                      </div>
+                      <a href="/forgot-password" className="text-xs font-figtree text-light hover:text-darkest transition-colors">
+                        Forgot password?
+                      </a>
+                    </div>
+
+                    {/* Login Button */}
+                    <button
+                      type="submit"
+                      className="w-full bg-dark hover:bg-darkest text-white font-figtree font-semibold px-4 py-1 rounded-md transition-colors focus:ring-2 focus:ring-light focus:ring-offset-2"
+                    >
+                      Login
+                    </button>
+
+                    {/* Divider */}
+                    <div className="relative my-6">
+                      <div className="absolute inset-0 flex items-center">
+                        <div className="w-full border-t border-lightBorder"></div>
+                      </div>
+                      <div className="relative flex justify-center text-xs">
+                        <span className="px-2 bg-white font-figtree text-labelGray">or</span>
+                      </div>
+                    </div>
+
+                    {/* Google Login Button */}
+                    <button
+                      type="button"
+                      className="group w-full border-2 border-dark text-dark hover:bg-dark hover:text-white font-figtree font-semibold px-4 py-1 rounded-md transition-colors focus:ring-2 focus:ring-light focus:ring-offset-2 flex items-center justify-center space-x-3"
+                    >
+                      <img 
+                        src="/google-logo.svg" 
+                        alt="Google Logo" 
+                        className="w-6 h-6 object-contain transition-all duration-200 group-hover:brightness-0 group-hover:invert"
+                      />
+                      <span>Login with GOOGLE</span>
+                    </button>
+                  </form>
+
+                  {/* Sign Up Link */}
+                  <div className="mt-10 pb-3 text-center">
+                    <p className="text-xs font-figtree text-dark">
+                      Don't have an account yet?{' '}
+                      <a href="/signup" className="text-light hover:text-darkest font-semibold transition-colors">
+                        Create Account
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </ResponsiveContainer>
+          </section>
+        </main>
+    </div>
+  );
+}

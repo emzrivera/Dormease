@@ -28,13 +28,13 @@ export default function Login() {
 
                 {/* Content */}
                 <div className="relative z-10">
-                  <h1 className="text-5xl font-montserrat font-semibold text-center mb-4 text-dark">
+                  <h1 className="text-3xl sm:text-5xl font-montserrat font-semibold text-center mb-4 text-dark">
                     Login
                   </h1>
-                  <p className="text-base text-center font-figtree text-dark mb-0">
+                  <p className="text-sm sm:text-base text-center font-figtree text-dark mb-0">
                     Welcome back, Dormease Host!
                   </p>
-                  <p className="text-base text-center font-figtree text-dark">
+                  <p className="text-sm sm:text-base text-center font-figtree text-dark">
                     Glad to see you again.
                   </p>
 
@@ -122,7 +122,7 @@ export default function Login() {
                   <div className="mt-10 pb-3 text-center">
                     <p className="text-xs font-figtree text-dark">
                       Don't have an account yet?{' '}
-                      <a href="/signup" className="text-light hover:text-darkest font-semibold transition-colors">
+                      <a href="/signup/dorm-owner" className="text-light hover:text-darkest font-semibold transition-colors">
                         Create Account
                       </a>
                     </p>

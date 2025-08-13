@@ -26,7 +26,7 @@ export default function Login() {
 
                 {/* Content */}
                 <div className="relative z-10">
-                  <h1 className="text-5xl font-montserrat font-semibold text-center text-dark">
+                  <h1 className="text-4xl sm:text-5xl font-montserrat font-semibold text-center text-dark">
                     Login as
                   </h1>
 

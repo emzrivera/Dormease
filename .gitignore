@@ -77,3 +77,6 @@ next-env.d.ts
 # iOS / Android (if you later eject from Expo)
 ios/
 android/
+
+# Admin pages
+apps/web/src/app/(pages)/admin/

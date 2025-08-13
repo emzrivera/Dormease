@@ -32,7 +32,7 @@ export default function Login() {
                     Login
                   </h1>
                   <p className="text-base text-center font-figtree text-dark mb-0">
-                    Welcome back, Dormease Host!
+                    Welcome back, Dormease Institution!
                   </p>
                   <p className="text-base text-center font-figtree text-dark">
                     Glad to see you again.

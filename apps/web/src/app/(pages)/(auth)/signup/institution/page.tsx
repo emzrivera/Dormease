@@ -1,5 +1,11 @@
-import ResponsiveContainer from '../../../../components/ResponsiveContainer';
-import ResponsiveNavigation from '../../../../components/ResponsiveNavBar';
+import ResponsiveContainer from '@/components/ResponsiveContainer';
+import ResponsiveNavigation from '@/components/ResponsiveNavBar';
+import { signup } from '../../actions';
+
+async function institutionSignup(formData: FormData) {
+  'use server'
+  await signup(formData, 'institution')
+}
 
 export default function Login() {
   return (
@@ -39,32 +45,46 @@ export default function Login() {
                   </p>
 
                   {/* Sign up Form */}
-                  <form className="mt-8 space-y-4">
+                  <form action={institutionSignup} className="mt-8 space-y-4">
                     
 
                     {/* Institution Name Field */}
                     <div>
-                      <label htmlFor="institutionName" className="block text-xs font-figtree text-labelGray">
+                      <label htmlFor="name" className="block text-xs font-figtree text-labelGray">
                         Institution Name
                       </label>
                       <input
                         type="text"
-                        id="institutionName"
-                        name="institutionName"
+                        id="name"
+                        name="name"
                         required
                         className="w-full px-2 py-1 border border-fieldBorder rounded-md focus:ring-1 focus:ring-light focus:border-light transition-colors"
                       />
                     </div>
 
-                    {/* Mobile Number Field */}
+                    {/* Address Field */}
                     <div>
-                      <label htmlFor="mobileNumber" className="block text-xs font-figtree text-labelGray">
-                        Mobile Number
+                      <label htmlFor="address" className="block text-xs font-figtree text-labelGray">
+                        Address
+                      </label>
+                      <input
+                        type="text"
+                        id="address"
+                        name="address"
+                        required
+                        className="w-full px-2 py-1 border border-fieldBorder rounded-md focus:ring-1 focus:ring-light focus:border-light transition-colors"
+                      />
+                    </div>
+
+                    {/* Phone Number Field */}
+                    <div>
+                      <label htmlFor="phoneNumber" className="block text-xs font-figtree text-labelGray">
+                        Phone Number
                       </label>
                       <input
                         type="tel"
-                        id="mobileNumber"
-                        name="mobileNumber"
+                        id="phoneNumber"
+                        name="phoneNumber"
                         required
                         className="w-full px-2 py-1 border border-fieldBorder rounded-md focus:ring-1 focus:ring-light focus:border-light transition-colors"
                       />

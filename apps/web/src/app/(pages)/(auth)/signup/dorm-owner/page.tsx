@@ -1,5 +1,11 @@
-import ResponsiveContainer from '../../../../components/ResponsiveContainer';
-import ResponsiveNavigation from '../../../../components/ResponsiveNavBar';
+import ResponsiveContainer from '@/components/ResponsiveContainer';
+import ResponsiveNavigation from '@/components/ResponsiveNavBar';
+import { signup } from '../../actions';
+
+async function ownerSignup(formData: FormData) {
+  'use server'
+  await signup(formData, 'dorm-owner')
+}
 
 export default function Login() {
   return (
@@ -39,7 +45,7 @@ export default function Login() {
                   </p>
 
                   {/* Sign up Form */}
-                  <form className="mt-8 space-y-4">
+                  <form action={ownerSignup} className="mt-8 space-y-4">
                     {/* First Name Field */}
                     <div>
                       <label htmlFor="firstName" className="block text-xs font-figtree text-labelGray">
@@ -68,15 +74,15 @@ export default function Login() {
                       />
                     </div>
 
-                    {/* Mobile Number Field */}
+                    {/* Phone Number Field */}
                     <div>
-                      <label htmlFor="mobileNumber" className="block text-xs font-figtree text-labelGray">
-                        Mobile Number
+                      <label htmlFor="phoneNumber" className="block text-xs font-figtree text-labelGray">
+                        Phone Number
                       </label>
                       <input
                         type="tel"
-                        id="mobileNumber"
-                        name="mobileNumber"
+                        id="phoneNumber"
+                        name="phoneNumber"
                         required
                         className="w-full px-2 py-1 border border-fieldBorder rounded-md focus:ring-1 focus:ring-light focus:border-light transition-colors"
                       />

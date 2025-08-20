@@ -1,5 +1,5 @@
-import ResponsiveContainer from '../../../components/ResponsiveContainer';
-import ResponsiveNavigation from '../../../components/ResponsiveNavBar';
+import ResponsiveContainer from '@/components/ResponsiveContainer';
+import ResponsiveNavigation from '@/components/ResponsiveNavBar';
 
 export default function Login() {
   return (

@@ -1,5 +1,11 @@
-import ResponsiveContainer from '../../../../components/ResponsiveContainer';
-import ResponsiveNavigation from '../../../../components/ResponsiveNavBar';
+import ResponsiveContainer from '@/components/ResponsiveContainer';
+import ResponsiveNavigation from '@/components/ResponsiveNavBar';
+import { login } from '../../actions';
+
+async function dormerLogin(formData: FormData) {
+  'use server'
+  await login(formData, 'dormer')
+}
 
 export default function Login() {
   return (
@@ -39,7 +45,10 @@ export default function Login() {
                   </p>
 
                   {/* Login Form */}
-                  <form className="mt-8 space-y-4">
+                  <form 
+                    action={dormerLogin}
+                    className="mt-8 space-y-4"
+                  >
                     {/* Email Field */}
                     <div>
                       <label htmlFor="email" className="block text-xs font-figtree text-labelGray">
@@ -64,6 +73,8 @@ export default function Login() {
                         id="password"
                         name="password"
                         required
+                        // value={password}
+                        // onChange={(e) => setPassword(e.target.value)}
                         className="w-full px-2 py-1 border border-fieldBorder rounded-md focus:ring-1 focus:ring-light focus:border-light transition-colors"
                       />
                     </div>
@@ -89,7 +100,7 @@ export default function Login() {
                     {/* Login Button */}
                     <button
                       type="submit"
-                      className="w-full bg-dark hover:bg-darkest text-white font-figtree font-semibold px-4 py-1 rounded-md transition-colors focus:ring-2 focus:ring-light focus:ring-offset-2"
+                      className="w-full bg-dark hover:bg-darkest text-white font-figtree font-semibold px-4 py-1 rounded-md transition-colors focus:ring-2 focus:ring-light focus:ring-offset-2 disabled:opacity-50"
                     >
                       Login
                     </button>

@@ -1,5 +1,11 @@
-import ResponsiveContainer from '../../../../components/ResponsiveContainer';
-import ResponsiveNavigation from '../../../../components/ResponsiveNavBar';
+import ResponsiveContainer from '@/components/ResponsiveContainer';
+import ResponsiveNavigation from '@/components/ResponsiveNavBar';
+import { login } from '../../actions';
+
+async function ownerLogin(formData: FormData) {
+  'use server'
+  await login(formData, 'dorm-owner')
+}
 
 export default function Login() {
   return (
@@ -32,14 +38,17 @@ export default function Login() {
                     Login
                   </h1>
                   <p className="text-sm sm:text-base text-center font-figtree text-dark mb-0">
-                    Welcome back, Dormease Institution!
+                    Welcome back, Dormease Host!
                   </p>
                   <p className="text-sm sm:text-base text-center font-figtree text-dark">
                     Glad to see you again.
                   </p>
 
                   {/* Login Form */}
-                  <form className="mt-8 space-y-4">
+                  <form action={ownerLogin} 
+                      className="mt-8 space-y-4"
+                  >
+                    
                     {/* Email Field */}
                     <div>
                       <label htmlFor="email" className="block text-xs font-figtree text-labelGray">
@@ -122,7 +131,7 @@ export default function Login() {
                   <div className="mt-10 pb-3 text-center">
                     <p className="text-xs font-figtree text-dark">
                       Don't have an account yet?{' '}
-                      <a href="/signup/institution" className="text-light hover:text-darkest font-semibold transition-colors">
+                      <a href="/signup/dorm-owner" className="text-light hover:text-darkest font-semibold transition-colors">
                         Create Account
                       </a>
                     </p>

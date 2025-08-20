@@ -21,5 +21,11 @@
   "devDependencies": {
     "@types/webpack": "^5.28.5",
     "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "@supabase/ssr": "^0.6.1",
+    "@supabase/supabase-js": "^2.55.0",
+    "lucide-react": "^0.540.0",
+    "react-icons": "^5.5.0"
   }
 }

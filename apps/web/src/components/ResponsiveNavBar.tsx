@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import ResponsiveContainer from './ResponsiveContainer';
 import ResponsiveImage from './ResponsiveImage';
 
+
 const ResponsiveNavigation: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -31,7 +32,7 @@ const ResponsiveNavigation: React.FC = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">
-              <a href="/" className="text-dark hover:text-darkest px-3 py-2 rounded-md text-sm font-figtree transition-colors">
+              <a href="/discover" className="text-dark hover:text-darkest px-3 py-2 rounded-md text-sm font-figtree transition-colors">
                 Discover
               </a>
               <a href="/about" className="text-dark hover:text-darkest px-3 py-2 rounded-md text-sm font-figtree transition-colors">
@@ -80,7 +81,7 @@ const ResponsiveNavigation: React.FC = () => {
             <div className="fixed top-16 left-0 right-0 h-full bg-white z-50">
               {/* Menu items */}
               <div className="px-4 pt-2 pb-3 space-y-1 sm:px-3 border-t border-lightBorder">
-                <a href="/" className="text-dark hover:text-darkest block px-3 py-2 rounded-md text-base font-figtree transition-colors">
+                <a href="/discover" className="text-dark hover:text-darkest block px-3 py-2 rounded-md text-base font-figtree transition-colors">
                   Discover
                 </a>
                 <a href="/about" className="text-dark hover:text-darkest block px-3 py-2 rounded-md text-base font-figtree transition-colors">

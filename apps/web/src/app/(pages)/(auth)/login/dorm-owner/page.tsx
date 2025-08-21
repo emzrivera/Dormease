@@ -1,11 +1,9 @@
+"use client"
+
 import ResponsiveContainer from '@/components/ResponsiveContainer';
 import ResponsiveNavigation from '@/components/ResponsiveNavBar';
-import { login } from '../../actions';
+import { login, signInWithGoogle } from '../../actions';
 
-async function ownerLogin(formData: FormData) {
-  'use server'
-  await login(formData, 'dorm-owner')
-}
 
 export default function Login() {
   return (
@@ -45,7 +43,10 @@ export default function Login() {
                   </p>
 
                   {/* Login Form */}
-                  <form action={ownerLogin} 
+                  <form 
+                    action={async (formData) => {
+                      await login(formData, 'dorm-owner')
+                    }}
                       className="mt-8 space-y-4"
                   >
                     
@@ -115,7 +116,16 @@ export default function Login() {
 
                     {/* Google Login Button */}
                     <button
-                      type="button"
+                      onClick={async () => {
+                        try {
+                          const oauthUrl = await signInWithGoogle('dorm-owner')
+                          if (oauthUrl) {
+                            window.location.href = oauthUrl
+                          }
+                        } catch (error) {
+                          console.error('Google OAuth error:', error)
+                        }
+                      }}
                       className="group w-full border-2 border-dark text-dark hover:bg-dark hover:text-white font-figtree font-semibold px-4 py-1 rounded-md transition-colors focus:ring-2 focus:ring-light focus:ring-offset-2 flex items-center justify-center space-x-3"
                     >
                       <img 

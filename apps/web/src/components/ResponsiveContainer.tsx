@@ -10,10 +10,10 @@ interface ResponsiveContainerProps {
   padding?: 'none' | 'sm' | 'md' | 'lg' | 'xl';
 }
 
-const ResponsiveContainer: React.FC<ResponsiveContainerProps> = ({ 
+const ResponsiveContainer: React.FC<ResponsiveContainerProps> = ({
   children, 
   className = '', 
-  maxWidth = '7xl',
+  maxWidth = '5xl',
   padding = 'md'
 }) => {
   const paddingClasses = {

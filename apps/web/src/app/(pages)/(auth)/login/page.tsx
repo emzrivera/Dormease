@@ -1,5 +1,8 @@
+"use client"
+
 import ResponsiveContainer from '@/components/ResponsiveContainer';
 import ResponsiveNavigation from '@/components/ResponsiveNavBar';
+// import Footer from '@/components/ResponsiveFooter';
 
 export default function Login() {
   return (
@@ -7,7 +10,8 @@ export default function Login() {
         <ResponsiveNavigation />
 
         <main>
-          <section className="min-h-screen flex justify-center pt-16 sm:pt-24">
+          {/* <section className="min-h-screen flex justify-center items-center"> */}
+          <section className="min-h-screen flex justify-center pt-16 sm:pt-24"> 
             <ResponsiveContainer maxWidth="sm">
               <div className="border border-t-8 rounded-lg border-dark w-full max-w-xs sm:max-w-md mx-auto py-10 px-10 relative overflow-hidden">
                 {/* Background Images */}
@@ -81,6 +85,7 @@ export default function Login() {
                   </div>
                 </div>
               </div>
+              
             </ResponsiveContainer>
           </section>
         </main>

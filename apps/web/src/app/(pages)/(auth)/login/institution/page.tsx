@@ -1,11 +1,8 @@
+"use client"
+
 import ResponsiveContainer from '@/components/ResponsiveContainer';
 import ResponsiveNavigation from '@/components/ResponsiveNavBar';
 import { login } from '../../actions';
-
-async function institutionLogin(formData: FormData) {
-  'use server'
-  await login(formData, 'institution')
-}
 
 export default function Login() {
   return (
@@ -45,7 +42,9 @@ export default function Login() {
                   </p>
 
                   {/* Login Form */}
-                  <form action={institutionLogin} className="mt-8 space-y-4">
+                  <form action={async (formData) => {
+                    await login(formData, 'institution')
+                  }}  className="mt-8 space-y-4">
                     {/* Email Field */}
                     <div>
                       <label htmlFor="email" className="block text-xs font-figtree text-labelGray">

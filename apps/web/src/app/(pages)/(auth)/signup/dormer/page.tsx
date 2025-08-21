@@ -1,11 +1,7 @@
+"use client"
 import ResponsiveContainer from '@/components/ResponsiveContainer';
 import ResponsiveNavigation from '@/components/ResponsiveNavBar';
-import { signup } from '../../actions';
-
-async function dormerSignup(formData: FormData) {
-  'use server'
-  await signup(formData, 'dormer')
-}
+import { signInWithGoogle, signup, signUpWithGoogle } from '../../actions';
 
 export default function Login() {
   return (
@@ -46,7 +42,9 @@ export default function Login() {
 
                   {/* Sign up Form */}
                   <form 
-                    action={dormerSignup}
+                    action={async (formData) => {
+                      await signup(formData, 'dormer')
+                    }}
                     className="mt-8 space-y-4"
                   >
                     {/* First Name Field */}
@@ -139,6 +137,16 @@ export default function Login() {
 
                     {/* Google Signup Button */}
                     <button
+                      onClick={async () => {
+                        try {
+                          const oauthUrl = await signInWithGoogle('dormer')
+                          if (oauthUrl) {
+                            window.location.href = oauthUrl
+                          }
+                        } catch (error) {
+                          console.error('Google OAuth error:', error)
+                        }
+                      }}
                       type="button"
                       className="group w-full border-2 border-dark text-dark hover:bg-dark hover:text-white font-figtree font-semibold px-4 py-1 rounded-md transition-colors focus:ring-2 focus:ring-light focus:ring-offset-2 flex items-center justify-center space-x-3"
                     >

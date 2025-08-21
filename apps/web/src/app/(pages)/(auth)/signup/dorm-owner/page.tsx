@@ -1,11 +1,8 @@
+"use client"
+
 import ResponsiveContainer from '@/components/ResponsiveContainer';
 import ResponsiveNavigation from '@/components/ResponsiveNavBar';
 import { signup } from '../../actions';
-
-async function ownerSignup(formData: FormData) {
-  'use server'
-  await signup(formData, 'dorm-owner')
-}
 
 export default function Login() {
   return (
@@ -45,7 +42,9 @@ export default function Login() {
                   </p>
 
                   {/* Sign up Form */}
-                  <form action={ownerSignup} className="mt-8 space-y-4">
+                  <form action={async (formData) => {
+                    await signup(formData, 'dorm-owner')
+                  }} className="mt-8 space-y-4">
                     {/* First Name Field */}
                     <div>
                       <label htmlFor="firstName" className="block text-xs font-figtree text-labelGray">

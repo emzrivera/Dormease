@@ -103,7 +103,7 @@ export async function signup(formData: FormData, userType: UserType) {
     email: data.email,
     password: data.password,
     options: {
-      emailRedirectTo: `${baseUrl}/confirm?next=${redirectPath}`,
+      emailRedirectTo: `${baseUrl}/auth/confirm?next=${redirectPath}`,
       data: {
         role: userType,
         first_name: data.firstName,
@@ -119,23 +119,12 @@ export async function signup(formData: FormData, userType: UserType) {
     redirect('/error')
   }
 
-          // After successful signup, do not create DB records yet.
+  // After successful signup, do not create DB records yet.
   // Records will be created after email confirmation in /auth/confirm.
   // This ensures only verified emails produce DB rows.
 
   revalidatePath('/', 'layout')
-  
-  // Redirect based on user type after signup
-  switch (userType) {
-    case 'dorm-owner':
-      redirect('/login/dorm-owner')
-    case 'institution':
-      redirect('/login/institution')
-    case 'dormer':
-      redirect('/login/dormer')
-    default:
-      redirect('/')
-  }
+  redirect('/signup')
 }
 
 // Helper function to get current user's role
@@ -215,4 +204,84 @@ export async function getUserProfile(userType: UserType) {
     console.error('Error fetching user profile:', error)
     return null
   }
+}
+
+// Google OAuth sign-in function for signup (redirects to login page)
+export async function signUpWithGoogle(userType: UserType) {
+  const supabase = await createClient()
+  
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'
+  const redirectPath = userType === 'dormer'
+    ? '/login/dormer'
+    : userType === 'dorm-owner'
+    ? '/login/dorm-owner'
+    : userType === 'institution'
+    ? '/login/institution'
+    : '/'
+
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: 'google',
+    options: {
+      redirectTo: `${baseUrl}/auth/callback?next=${redirectPath}&mode=signup`,
+      queryParams: {
+        access_type: 'offline',
+        prompt: 'consent',
+      },
+    },
+  })
+
+  if (error) {
+    console.error('Google OAuth error:', error)
+    redirect('/error')
+  }
+
+  // Return the OAuth URL for client-side redirect
+  if (data?.url) {
+    console.log('OAuth URL generated:', data.url)
+    return data.url
+  }
+
+  console.log('No OAuth URL generated')
+  return null
+}
+
+// Google OAuth sign-in function for login (redirects to home/dashboard)
+export async function signInWithGoogle(userType: UserType) {
+  const supabase = await createClient()
+  
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'
+  const redirectPath = userType === 'dormer'
+    ? '/home'
+    : userType === 'dorm-owner'
+    ? '/owner/dashboard'
+    : userType === 'institution'
+    ? '/institution/dashboard'
+    : '/'
+
+  console.log('Starting Google OAuth login with redirectTo:', `${baseUrl}/auth/callback?next=${redirectPath}&mode=login`)
+  
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: 'google',
+    options: {
+      redirectTo: `${baseUrl}/auth/callback?next=${redirectPath}&mode=login`,
+      queryParams: {
+        access_type: 'offline',
+        prompt: 'consent',
+      },
+    },
+  })
+
+  if (error) {
+    console.error('Google OAuth error:', error)
+    redirect('/error')
+  }
+
+  // Return the OAuth URL for client-side redirect
+  if (data?.url) {
+    console.log('OAuth URL generated:', data.url)
+    return data.url
+  }
+
+  console.log('No OAuth URL generated')
+  return null
 }

@@ -1,11 +1,8 @@
+"use client"
+
 import ResponsiveContainer from '@/components/ResponsiveContainer';
 import ResponsiveNavigation from '@/components/ResponsiveNavBar';
 import { signup } from '../../actions';
-
-async function institutionSignup(formData: FormData) {
-  'use server'
-  await signup(formData, 'institution')
-}
 
 export default function Login() {
   return (
@@ -45,7 +42,9 @@ export default function Login() {
                   </p>
 
                   {/* Sign up Form */}
-                  <form action={institutionSignup} className="mt-8 space-y-4">
+                  <form action={async (formData) => {
+                    await signup(formData, 'institution')
+                  }}  className="mt-8 space-y-4">
                     
 
                     {/* Institution Name Field */}

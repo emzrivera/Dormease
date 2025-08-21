@@ -253,7 +253,7 @@ export async function signInWithGoogle(userType: UserType) {
   const redirectPath = userType === 'dormer'
     ? '/home'
     : userType === 'dorm-owner'
-    ? '/owner/dashboard'
+    ? '/host/dashboard'
     : userType === 'institution'
     ? '/institution/dashboard'
     : '/'

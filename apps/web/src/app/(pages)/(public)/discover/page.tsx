@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import ResponsiveNavigation from "../../../components/ResponsiveNavBar";
-import Footer from "../../../components/ResponsiveFooter";
+import ResponsiveNavigation from "../../../../components/ResponsiveNavBar";
+import Footer from "../../../../components/ResponsiveFooter";
 import ListingCard from "./components/ListingCard";
-import ResponsiveContainer from "../../../components/ResponsiveContainer";
+import ResponsiveContainer from "../../../../components/ResponsiveContainer";
 import { Map} from "lucide-react";
 
 export default function DiscoverPage() {

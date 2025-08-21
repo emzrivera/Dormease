@@ -1,7 +1,7 @@
 "use client"
 import ResponsiveContainer from '@/components/ResponsiveContainer';
 import ResponsiveNavigation from '@/components/ResponsiveNavBar';
-import { signInWithGoogle, signup, signUpWithGoogle } from '../../actions';
+import { signup, signUpWithGoogle } from '../../actions';
 
 export default function Login() {
   return (
@@ -139,7 +139,7 @@ export default function Login() {
                     <button
                       onClick={async () => {
                         try {
-                          const oauthUrl = await signInWithGoogle('dormer')
+                          const oauthUrl = await signUpWithGoogle('dormer')
                           if (oauthUrl) {
                             window.location.href = oauthUrl
                           }

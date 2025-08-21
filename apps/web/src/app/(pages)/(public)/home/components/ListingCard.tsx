@@ -1,5 +1,5 @@
 import { FaMapMarkerAlt, FaStar } from "react-icons/fa";
-import ResponsiveCard from '../../../../components/ResponsiveCard';
+import ResponsiveCard from '@/components/ResponsiveCard';
 
 interface ListingCardProps {
   name: string;

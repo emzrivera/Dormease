@@ -1,10 +1,10 @@
 "use client";
 
-import ResponsiveNavigation from '../../../components/ResponsiveNavBar';
-import Footer from '../../../components/ResponsiveFooter';
+import ResponsiveNavigation from '@/components/ResponsiveNavBar';
+import Footer from '@/components/ResponsiveFooter';
 import ListingCard from './components/ListingCard';
 import { Search } from "lucide-react";
-import ResponsiveGrid from '../../../components/ResponsiveGrid';
+// import ResponsiveGrid from '@/components/ResponsiveGrid';
 
 
 const listings = [

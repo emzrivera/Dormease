@@ -124,7 +124,44 @@ export async function signup(formData: FormData, userType: UserType) {
   // This ensures only verified emails produce DB rows.
 
   revalidatePath('/', 'layout')
-  redirect('/signup')
+  // Pass email and userType as URL parameters for automatic resend
+  const emailParam = encodeURIComponent(data.email)
+  redirect(`/signup?email=${emailParam}&userType=${userType}`)
+}
+
+// Resend email verification function
+export async function resendEmailVerification(email: string, userType: UserType) {
+  const supabase = await createClient()
+  
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL
+  const redirectPath = userType === 'dormer'
+    ? '/login/dormer'
+    : userType === 'dorm-owner'
+    ? '/login/dorm-owner'
+    : userType === 'institution'
+    ? '/login/institution'
+    : '/'
+
+  try {
+    // Resend the email verification
+    const { error } = await supabase.auth.resend({
+      type: 'signup',
+      email: email,
+      options: {
+        emailRedirectTo: `${baseUrl}/auth/confirm?next=${redirectPath}`,
+      }
+    })
+
+    if (error) {
+      console.error('Error resending email:', error)
+      throw error
+    }
+
+    return { success: true, message: 'Verification email resent successfully!' }
+  } catch (error) {
+    console.error('Resend error:', error)
+    return { success: false, message: 'Failed to resend verification email' }
+  }
 }
 
 // Helper function to get current user's role

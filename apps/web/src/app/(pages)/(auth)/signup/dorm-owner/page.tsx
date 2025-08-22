@@ -1,3 +1,4 @@
+"use client"
 import ResponsiveContainer from '@/components/ResponsiveContainer';
 import ResponsiveNavigation from '@/components/ResponsiveNavBar';
 import { signup, signUpWithGoogle } from '../../actions';

@@ -1,31 +1,37 @@
 {
-  "name": "dormease",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/emzrivera/Dormease.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/emzrivera/Dormease/issues"
-  },
-  "homepage": "https://github.com/emzrivera/Dormease#readme",
-  "devDependencies": {
-    "@types/webpack": "^5.28.5",
-    "typescript": "^5.9.2"
-  },
-  "dependencies": {
-    "@supabase/ssr": "^0.6.1",
-    "@supabase/supabase-js": "^2.55.0",
-    "lucide-react": "^0.540.0",
-    "react-icons": "^5.5.0"
-  }
+    "name": "dormease",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/emzrivera/Dormease.git"
+    },
+
+
+    "workspaces": [
+        "apps/*",
+        "shared/*"
+    ],
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "type": "commonjs",
+    "bugs": {
+        "url": "https://github.com/emzrivera/Dormease/issues"
+    },
+    "homepage": "https://github.com/emzrivera/Dormease#readme",
+    "devDependencies": {
+        "@types/webpack": "^5.28.5",
+        "typescript": "^5.9.2"
+    },
+    "dependencies": {
+        "@supabase/ssr": "^0.6.1",
+        "@supabase/supabase-js": "^2.55.0",
+        "lucide-react": "^0.540.0",
+        "react-icons": "^5.5.0"
+    }
 }

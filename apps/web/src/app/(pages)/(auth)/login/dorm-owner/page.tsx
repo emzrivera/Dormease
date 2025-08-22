@@ -1,5 +1,6 @@
 "use client"
 
+import React from 'react';
 import ResponsiveContainer from '@/components/ResponsiveContainer';
 import ResponsiveNavigation from '@/components/ResponsiveNavBar';
 import { login, signInWithGoogle } from '../../actions';

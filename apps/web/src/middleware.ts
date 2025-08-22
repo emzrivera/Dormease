@@ -5,14 +5,19 @@ import type { NextRequest } from 'next/server'
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next()
   
-  // skip middleware for static assets and image files
+  // Skip middleware for static assets and image files
   const pathname = req.nextUrl.pathname
   if (pathname.match(/\.(jpg|jpeg|png|gif|svg|ico|webp)$/)) {
     return res
   }
   
+  // CRITICAL: Skip middleware for email verification routes
+  if (pathname.startsWith('/auth/confirm') || pathname.startsWith('/auth/callback')) {
+    return res
+  }
+  
   try {
-    // create Supabase client using the new SSR package
+    // Create Supabase client using the new SSR package
     const supabase = createServerClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -32,9 +37,9 @@ export async function middleware(req: NextRequest) {
 
     const { data: { user } } = await supabase.auth.getUser()
 
-    // if not logged in, allow access to public routes only
+    // If no user, allow access to public routes only
     if (!user) {
-      // public routes
+      // Allow access to public routes
       if (req.nextUrl.pathname.startsWith('/home') || 
           req.nextUrl.pathname.startsWith('/discover') ||
           req.nextUrl.pathname.startsWith('/about') ||
@@ -46,21 +51,24 @@ export async function middleware(req: NextRequest) {
         return res
       }
       
-      // redirect to login for protected routes
-      return NextResponse.redirect(new URL('/login', req.url))
+      // Redirect to login for protected routes (but not if already going to login)
+      if (!req.nextUrl.pathname.startsWith('/login')) {
+        return NextResponse.redirect(new URL('/login', req.url))
+      }
+      return res
     }
 
-    // check user role
+    // User is authenticated, check role-based access
     const { data: userData, error: userError } = await supabase
       .from('users')
       .select('role')
       .eq('id', user.id)
       .single()
 
-    // if there's an error fetching user data, allow access to public routes
+    // If there's an error fetching user data, allow access to public routes
     if (userError || !userData) {
       console.error('Error fetching user role:', userError)
-      // allow access to public routes even if we can't verify their role
+      // Allow access to public routes even if we can't verify their role
       if (req.nextUrl.pathname.startsWith('/home') || 
           req.nextUrl.pathname.startsWith('/discover') ||
           req.nextUrl.pathname.startsWith('/about') ||
@@ -70,15 +78,15 @@ export async function middleware(req: NextRequest) {
           req.nextUrl.pathname.startsWith('/signup')) {
         return res
       }
-      // redirect to login for protected routes
+      // Redirect to login for protected routes
       return NextResponse.redirect(new URL('/login', req.url))
     }
 
     const userRole = userData.role
 
-    // role-based access control
+    // Role-based access control
     if (userRole === 'dormer') {
-      // ROUTES FOR DORMERS
+      // Dormers can only access dormer-specific routes
       if (req.nextUrl.pathname.startsWith('/dormer/') ||
           req.nextUrl.pathname.startsWith('/home') ||
           req.nextUrl.pathname.startsWith('/discover') ||
@@ -88,7 +96,7 @@ export async function middleware(req: NextRequest) {
         return res
       }
       
-      // redirect dormers away from other user types
+      // Redirect dormers away from other user type routes
       if (req.nextUrl.pathname.startsWith('/host/') ||
           req.nextUrl.pathname.startsWith('/institution/') ||
           req.nextUrl.pathname.startsWith('/admin/')) {
@@ -97,7 +105,7 @@ export async function middleware(req: NextRequest) {
     }
 
     if (userRole === 'dorm-owner') {
-      // ROUTES FOR DORM OWNERS
+      // Dorm owners can access owner routes and public routes
       if (req.nextUrl.pathname.startsWith('/host/') ||
           req.nextUrl.pathname.startsWith('/home') ||
           req.nextUrl.pathname.startsWith('/discover') ||
@@ -107,7 +115,7 @@ export async function middleware(req: NextRequest) {
         return res
       }
       
-      // redirect owners away from other user types
+      // Redirect owners away from other user type routes
       if (req.nextUrl.pathname.startsWith('/dormer/') ||
           req.nextUrl.pathname.startsWith('/institution/') ||
           req.nextUrl.pathname.startsWith('/admin/')) {
@@ -116,7 +124,7 @@ export async function middleware(req: NextRequest) {
     }
 
     if (userRole === 'institution') {
-      // ROUTES FOR INSTITUTIONS
+      // Institutions can access institution routes and public routes
       if (req.nextUrl.pathname.startsWith('/institution/') ||
           req.nextUrl.pathname.startsWith('/home') ||
           req.nextUrl.pathname.startsWith('/discover') ||
@@ -126,7 +134,7 @@ export async function middleware(req: NextRequest) {
         return res
       }
       
-      // redirect institutions away from other user types
+      // Redirect institutions away from other user type routes
       if (req.nextUrl.pathname.startsWith('/dormer/') ||
           req.nextUrl.pathname.startsWith('/host/') ||
           req.nextUrl.pathname.startsWith('/admin/')) {
@@ -135,28 +143,27 @@ export async function middleware(req: NextRequest) {
     }
 
     if (userRole === 'admin') {
-      // admins can access all routes
+      // Admins can access all routes
       return res
     }
 
-    // default: allow access to public routes only
+    // Default: allow access to public routes only
     if (req.nextUrl.pathname.startsWith('/home') || 
         req.nextUrl.pathname.startsWith('/discover') ||
         req.nextUrl.pathname.startsWith('/about') ||
         req.nextUrl.pathname.startsWith('/how-it-works') ||
         req.nextUrl.pathname.startsWith('/faqs') ||
         req.nextUrl.pathname.startsWith('/login') ||
-        req.nextUrl.pathname.startsWith('/signup') ||
-        req.nextUrl.pathname.startsWith('/auth')) {
+        req.nextUrl.pathname.startsWith('/signup')) {
       return res
     }
 
-    // redirect to home for unknown routes
+    // Redirect to home for unknown routes
     return NextResponse.redirect(new URL('/home', req.url))
     
   } catch (error) {
-    // if there's any error with Supabase or role checking, allow the request through
-    // this prevents the middleware from breaking the entire app
+    // If there's any error with Supabase or role checking, allow the request through
+    // This prevents the middleware from breaking the entire app
     console.error('Middleware error:', error)
     return res
   }

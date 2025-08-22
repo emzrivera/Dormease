@@ -1,5 +1,6 @@
 import ResponsiveContainer from '@/components/ResponsiveContainer';
 import ResponsiveNavigation from '@/components/ResponsiveNavBar';
+import Link from 'next/link';
 
 export default function dashboard() {
   return (
@@ -18,14 +19,14 @@ export default function dashboard() {
                 We just sent a verification link to your email.
               </p>
 
-              <a href="/login" className="flex justify-center items-center text-center">
+              <Link href="/login" className="flex justify-center items-center text-center">
                 <button
                     type="button"
                     className="group border border-dark text-dark hover:bg-dark hover:text-white font-figtree font-semibold px-4 py-2 rounded-md transition-colors focus:ring-2 focus:ring-light focus:ring-offset-2 flex items-center justify-center space-x-3"
                 >
                     Back to Login
                 </button>
-                </a>
+                </Link>
             </div>
           </ResponsiveContainer>
         </section>

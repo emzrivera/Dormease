@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import ResponsiveContainer from './ResponsiveContainer';
 import ResponsiveImage from './ResponsiveImage';
 
@@ -19,7 +20,7 @@ const ResponsiveNavigation: React.FC = () => {
       <ResponsiveContainer padding="lg">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <a href='/home' className="flex-shrink-0">
+          <Link href='/home' className="flex-shrink-0">
             <ResponsiveImage
               src="/dormease-logo-1.svg"
               alt="Dormease Logo"
@@ -27,29 +28,29 @@ const ResponsiveNavigation: React.FC = () => {
               height={40}
               className="h-5 w-auto"
             />
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">
-              <a href="/discover" className="text-dark hover:text-darkest px-3 py-2 rounded-md text-sm font-figtree transition-colors">
+              <Link href="/discover" className="text-dark hover:text-darkest px-3 py-2 rounded-md text-sm font-figtree transition-colors">
                 Discover
-              </a>
-              <a href="/about" className="text-dark hover:text-darkest px-3 py-2 rounded-md text-sm font-figtree transition-colors">
+              </Link>
+              <Link href="/about" className="text-dark hover:text-darkest px-3 py-2 rounded-md text-sm font-figtree transition-colors">
                 About Us
-              </a>
-              <a href="/list" className="text-dark hover:text-darkest px-3 py-2 rounded-md text-sm font-figtree transition-colors">
+              </Link>
+              <Link href="/list" className="text-dark hover:text-darkest px-3 py-2 rounded-md text-sm font-figtree transition-colors">
                 List Your Property
-              </a>
-              <a href="/how-it-works" className="text-dark hover:text-darkest px-3 py-2 rounded-md text-sm font-figtree transition-colors">
+              </Link>
+              <Link href="/how-it-works" className="text-dark hover:text-darkest px-3 py-2 rounded-md text-sm font-figtree transition-colors">
                 How It Works
-              </a>
-              <a href="/faqs" className="text-dark hover:text-darkest px-3 py-2 rounded-md text-sm font-figtree transition-colors">
+              </Link>
+              <Link href="/faqs" className="text-dark hover:text-darkest px-3 py-2 rounded-md text-sm font-figtree transition-colors">
                 FAQs
-              </a>
-              <a href="/login" className="bg-light text-white hover:bg-darkest px-5 py-1 rounded-md text-sm font-figtree transition-colors">
+              </Link>
+              <Link href="/login" className="bg-light text-white hover:bg-darkest px-5 py-1 rounded-md text-sm font-figtree transition-colors">
                 Login
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -81,24 +82,24 @@ const ResponsiveNavigation: React.FC = () => {
             <div className="fixed top-16 left-0 right-0 h-full bg-white z-50">
               {/* Menu items */}
               <div className="px-4 pt-2 pb-3 space-y-1 sm:px-3 border-t border-lightBorder">
-                <a href="/discover" className="text-dark hover:text-darkest block px-3 py-2 rounded-md text-base font-figtree transition-colors">
+                <Link href="/discover" className="text-dark hover:text-darkest block px-3 py-2 rounded-md text-base font-figtree transition-colors">
                   Discover
-                </a>
-                <a href="/about" className="text-dark hover:text-darkest block px-3 py-2 rounded-md text-base font-figtree transition-colors">
+                </Link>
+                <Link href="/about" className="text-dark hover:text-darkest block px-3 py-2 rounded-md text-base font-figtree transition-colors">
                   About Us
-                </a>
-                <a href="/list" className="text-dark hover:text-darkest block px-3 py-2 rounded-md text-base font-figtree transition-colors">
+                </Link>
+                <Link href="/list" className="text-dark hover:text-darkest block px-3 py-2 rounded-md text-base font-figtree transition-colors">
                   List Your Property
-                </a>
-                <a href="/how-it-works" className="text-dark hover:text-darkest block px-3 py-2 rounded-md text-base font-figtree transition-colors">
+                </Link>
+                <Link href="/how-it-works" className="text-dark hover:text-darkest block px-3 py-2 rounded-md text-base font-figtree transition-colors">
                   How It Works
-                </a>
-                <a href="/faqs" className="text-dark hover:text-darkest block px-3 py-2 rounded-md text-base font-figtree transition-colors">
+                </Link>
+                <Link href="/faqs" className="text-dark hover:text-darkest block px-3 py-2 rounded-md text-base font-figtree transition-colors">
                   FAQs
-                </a>
-                <a href="/login" className="bg-light text-white hover:bg-darkest block px-3 py-2 rounded-md text-base font-figtree transition-colors text-center">
+                </Link>
+                <Link href="/login" className="bg-light text-white hover:bg-darkest block px-3 py-2 rounded-md text-base font-figtree transition-colors text-center">
                   Login
-                </a>
+                </Link>
               </div>
             </div>
           </>

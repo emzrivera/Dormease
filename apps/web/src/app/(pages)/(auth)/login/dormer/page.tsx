@@ -3,6 +3,7 @@
 import ResponsiveContainer from '@/components/ResponsiveContainer';
 import ResponsiveNavigation from '@/components/ResponsiveNavBar';
 import { login, signInWithGoogle } from '../../actions';
+import Link from 'next/link';
 
 export default function Login() {
   return (
@@ -91,9 +92,9 @@ export default function Login() {
                           Remember me
                         </label>
                       </div>
-                      <a href="/forgot-password" className="text-xs font-figtree text-light hover:text-darkest transition-colors">
+                      <Link href="/forgot-password" className="text-xs font-figtree text-light hover:text-darkest transition-colors">
                         Forgot password?
-                      </a>
+                      </Link>
                     </div>
 
                     {/* Login Button */}
@@ -142,9 +143,9 @@ export default function Login() {
                   <div className="mt-10 pb-3 text-center">
                     <p className="text-xs font-figtree text-dark">
                       Don't have an account yet?{' '}
-                      <a href="/signup/dormer" className="text-light hover:text-darkest font-semibold transition-colors">
+                      <Link href="/signup/dormer" className="text-light hover:text-darkest font-semibold transition-colors">
                         Create Account
-                      </a>
+                      </Link>
                     </p>
                   </div>
                 </div>

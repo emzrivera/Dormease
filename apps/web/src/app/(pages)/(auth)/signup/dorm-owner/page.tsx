@@ -1,8 +1,7 @@
-"use client"
-
 import ResponsiveContainer from '@/components/ResponsiveContainer';
 import ResponsiveNavigation from '@/components/ResponsiveNavBar';
-import { signup } from '../../actions';
+import { signup, signUpWithGoogle } from '../../actions';
+import Link from 'next/link';
 
 export default function Login() {
   return (
@@ -135,6 +134,16 @@ export default function Login() {
 
                     {/* Google Signup Button */}
                     <button
+                      onClick={async () => {
+                        try {
+                          const oauthUrl = await signUpWithGoogle('dorm-owner')
+                          if (oauthUrl) {
+                            window.location.href = oauthUrl
+                          }
+                        } catch (error) {
+                          console.error('Google OAuth error:', error)
+                        }
+                      }}
                       type="button"
                       className="group w-full border-2 border-dark text-dark hover:bg-dark hover:text-white font-figtree font-semibold px-4 py-1 rounded-md transition-colors focus:ring-2 focus:ring-light focus:ring-offset-2 flex items-center justify-center space-x-3"
                     >
@@ -151,9 +160,9 @@ export default function Login() {
                   <div className="mt-10 text-center">
                     <p className="text-xs font-figtree text-dark">
                       Already have an account?{' '}
-                      <a href="/login" className="text-light hover:text-darkest font-semibold transition-colors">
+                      <Link href="/login" className="text-light hover:text-darkest font-semibold transition-colors">
                         Login
-                      </a>
+                      </Link>
                     </p>
                   </div>
                 </div>

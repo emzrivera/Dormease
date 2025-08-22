@@ -2,6 +2,7 @@
 import ResponsiveContainer from '@/components/ResponsiveContainer';
 import ResponsiveNavigation from '@/components/ResponsiveNavBar';
 import { signup, signUpWithGoogle } from '../../actions';
+import Link from 'next/link';
 
 export default function Login() {
   return (
@@ -163,9 +164,9 @@ export default function Login() {
                   <div className="mt-10 pb-3 text-center">
                     <p className="text-xs font-figtree text-dark">
                       Already have an account?{' '}
-                      <a href="/login" className="text-light hover:text-darkest font-semibold transition-colors">
+                      <Link href="/login" className="text-light hover:text-darkest font-semibold transition-colors">
                         Login
-                      </a>
+                      </Link>
                     </p>
                   </div>
                 </div>

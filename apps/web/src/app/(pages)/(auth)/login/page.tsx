@@ -2,6 +2,7 @@
 
 import ResponsiveContainer from '@/components/ResponsiveContainer';
 import ResponsiveNavigation from '@/components/ResponsiveNavBar';
+import Link from 'next/link';
 // import Footer from '@/components/ResponsiveFooter';
 
 export default function Login() {
@@ -37,7 +38,7 @@ export default function Login() {
                   <div className='relatives space-y-6 py-12 mb-10'>    
 
                       {/* Dormer Login Button */}
-                      <a href="/login/dormer" className="block">
+                      <Link href="/login/dormer" className="block">
                         <button
                           type="button"
                           className="group w-full border border-dark text-dark hover:bg-dark hover:text-white font-figtree font-semibold px-4 py-2 rounded-md transition-colors focus:ring-2 focus:ring-light focus:ring-offset-2 flex items-center justify-center space-x-3"
@@ -49,10 +50,10 @@ export default function Login() {
                           />
                           <span>Dormer</span>
                         </button>
-                      </a>
+                      </Link>
                       
                       {/* Dorme Owner Login Button */}
-                      <a href="/login/dorm-owner" className="block">
+                      <Link href="/login/dorm-owner" className="block">
                         <button
                           type="button"
                           className="group w-full border border-dark text-dark hover:bg-dark hover:text-white font-figtree font-semibold px-4 py-2 rounded-md transition-colors focus:ring-2 focus:ring-light focus:ring-offset-2 flex items-center justify-center space-x-3"
@@ -64,10 +65,10 @@ export default function Login() {
                           />
                           <span>Dorm Owner</span>
                         </button>
-                      </a>
+                      </Link>
                       
                       {/* Institution Login Button */}
-                      <a href="/login/institution" className="block">
+                      <Link href="/login/institution" className="block">
                         <button
                           type="button"
                           className="group w-full border border-dark text-dark hover:bg-dark hover:text-white font-figtree font-semibold px-4 py-2 rounded-md transition-colors focus:ring-2 focus:ring-light focus:ring-offset-2 flex items-center justify-center space-x-3"
@@ -79,7 +80,7 @@ export default function Login() {
                           />
                           <span>Institution</span>
                         </button>
-                      </a>
+                      </Link>
                       
 
                   </div>

@@ -1,6 +1,7 @@
 import { FaFacebookF, FaInstagram, FaEnvelope } from "react-icons/fa";
 import ResponsiveContainer from "./ResponsiveContainer";
 import ResponsiveImage from "./ResponsiveImage";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -12,7 +13,7 @@ export default function Footer() {
 
           <div className="flex flex-col items-center md:items-start space-y-3 text-center">
             {/* Logo */}
-            <a href='/home' className="flex-shrink-0">
+            <Link href='/home' className="flex-shrink-0">
               <ResponsiveImage
                 src="/dormease-logo-ondark.svg"
                 alt="Dormease Logo"
@@ -20,7 +21,7 @@ export default function Footer() {
                 height={40}
                 className="h-5 w-auto"
               />
-            </a>
+            </Link>
        
 
             {/* Tagline */}
@@ -28,24 +29,24 @@ export default function Footer() {
 
             {/* Social icons */}
             <div className="flex gap-4 mt-2">
-              <a href="#" className="w-7 h-7 flex items-center justify-center rounded-full bg-white hover:bg-gray-100 transition-colors">
+              <Link href="#" className="w-7 h-7 flex items-center justify-center rounded-full bg-white hover:bg-gray-100 transition-colors">
                 <FaFacebookF className="text-dark" />
-              </a>
-              <a href="#" className="w-7 h-7 flex items-center justify-center rounded-full bg-white hover:bg-gray-100 transition-colors">
+              </Link>
+              <Link href="#" className="w-7 h-7 flex items-center justify-center rounded-full bg-white hover:bg-gray-100 transition-colors">
                 <FaEnvelope className="text-dark" />
-              </a>
-              <a href="#" className="w-7 h-7 flex items-center justify-center rounded-full bg-white hover:bg-gray-100 transition-colors">
+              </Link>
+              <Link href="#" className="w-7 h-7 flex items-center justify-center rounded-full bg-white hover:bg-gray-100 transition-colors">
                 <FaInstagram className="text-dark" />
-              </a>
+              </Link>
             </div>
           </div>
 
           {/* Quick Links */}
          <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 gap-x-8 gap-y-2 text-center text-sm md:text-right md:ml-auto w-full md:w-auto mt-8 md:mt-0">
-          <a href="#" className="hover:underline">About Us</a>
-          <a href="#" className="hover:underline">Contact</a>
-          <a href="#" className="hover:underline">Privacy Policy</a>
-          <a href="#" className="hover:underline">Terms of Service</a>
+          <Link href="#" className="hover:underline">About Us</Link>
+          <Link href="#" className="hover:underline">Contact</Link>
+          <Link href="#" className="hover:underline">Privacy Policy</Link>
+          <Link href="#" className="hover:underline">Terms of Service</Link>
         </div>
 
 
